@@ -1,20 +1,20 @@
 import React from 'react';
 import './App.css';
-import Home from './pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import StrategiesList from './pages/StrategiesList';
-import Search from "./pages/Search";
+import HomePage from './pages/Home';
+import SearchPage from './pages/Search';
+import StrategyDetails from './pages/StrategyDetails';
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                <Route exact path="/" element={<Home/>}/>
-                <Route path='/search' exact={true} element={<Search/>}/>
-                <Route path='/strategies' exact={true} element={<StrategiesList/>}/>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/strategy/:id" element={<StrategyDetails />} /> {/* Using element prop */}
             </Routes>
         </Router>
-    )
-}
+    );
+};
 
 export default App;

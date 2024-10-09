@@ -88,6 +88,7 @@ const SearchPage = () => {
                 {results.map(result => (
                     <Col md={12} key={result.id}>
                         <SearchResultCard
+                            id={result.id}
                             image={result.image}
                             name={result.name}
                             description={result.description}
