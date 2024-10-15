@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HomePage from './pages/Home';
 import SearchPage from './pages/Search';
-import StrategyDetails from './pages/StrategyDetails';
+import StrategyDetails from './pages/StrategyDetails/StrategyDetailsPage';
 import Layout from "./components/Layout";
 
 const App = () => {
