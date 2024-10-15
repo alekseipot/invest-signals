@@ -3,22 +3,16 @@ import { Row, Col, Card } from 'react-bootstrap';
 
 const StrategyHeader = ({ strategy }) => {
     return (
-        <Card className="mb-4">
-            <Card.Body>
-                <Row>
-                    <Col md={8}>
-                        <h3>{strategy.name}</h3>
-                        <p>{strategy.description}</p>
-                    </Col>
-                    <Col md={4}>
-                        <div className="text-right">
-                            <h5>Performance: {strategy.performance}%</h5>
-                            <p>Risk: {strategy.riskLevel}</p>
-                        </div>
-                    </Col>
-                </Row>
-            </Card.Body>
-        </Card>
+        <Row className="align-items-center mb-4">
+            <Col>
+                <h1>Factsheet: <span className="text-primary">{strategy.name}</span></h1>
+            </Col>
+            <Col className="text-end">
+                <div className="performance-box">
+                    <span className="performance-value">{strategy.performance}</span>
+                </div>
+            </Col>
+        </Row>
     );
 };
 

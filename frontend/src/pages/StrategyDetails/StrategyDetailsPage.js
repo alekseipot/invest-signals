@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card, Row, Col, Button, ProgressBar, Table } from 'react-bootstrap';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'; // For charting
+import './StrategyDetails.css';
+import StrategyHeader from "./components/StrategyHeader";
 
 // Sample mock data
 const mockResults = [
@@ -19,7 +21,8 @@ const mockResults = [
             "return": "15%",
             "risk": "Moderate",
             "returnToRisk": "High",
-            "price": "€49.99/month"
+            "price": "€49.99/month",
+            "performance": "+13.93% p.a."
         },
         {
             "id": 2,
@@ -35,7 +38,8 @@ const mockResults = [
             "return": "10%",
             "risk": "Low",
             "returnToRisk": "Medium",
-            "price": "€79.99/month"
+            "price": "€79.99/month",
+            "performance": "+9.85% p.a."
         },
         {
             "id": 3,
@@ -51,7 +55,8 @@ const mockResults = [
             "return": "25%",
             "risk": "High",
             "returnToRisk": "High",
-            "price": "€99.99/month"
+            "price": "€99.99/month",
+            "performance": "+18.22% p.a."
         },
         {
             "id": 4,
@@ -67,7 +72,8 @@ const mockResults = [
             "return": "6%",
             "risk": "Low",
             "returnToRisk": "Medium",
-            "price": "€39.99/month"
+            "price": "€39.99/month",
+            "performance": "+5.10% p.a."
         },
         {
             "id": 5,
@@ -83,7 +89,8 @@ const mockResults = [
             "return": "12%",
             "risk": "Moderate",
             "returnToRisk": "High",
-            "price": "€69.99/month"
+            "price": "€69.99/month",
+            "performance": "+11.30% p.a."
         }
     ];
 
@@ -107,12 +114,7 @@ const StrategyDetails = () => {
     return (
         <Container className="mt-5">
             {/* 1. Header */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h2>{strategy.name}</h2>
-                    <p>{strategy.description}</p>
-                </Card.Body>
-            </Card>
+            <StrategyHeader strategy={strategy}/>
 
             {/* 2. Rating */}
             <Card className="mb-4">

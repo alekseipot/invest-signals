@@ -1,0 +1,23 @@
+/* StrategyDetails.css */
+.performance-box {
+    padding: 10px 20px;
+    color: #4a4a4a;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: inline-block;
+    border: 4px solid #add600;
+    background-color: #add600;
+}
+
+.performance-value {
+    color: white;
+    font-size: 32px;
+    display: block;
+}
+
+.performance-box span {
+    color: white;
+}
+
+/* Add any other styles specific to the StrategyDetails page here */
