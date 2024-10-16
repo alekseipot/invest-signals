@@ -20,4 +20,29 @@
     color: white;
 }
 
-/* Add any other styles specific to the StrategyDetails page here */
+/* src/components/StrategyChart.css */
+
+.chart-label {
+    position: relative;
+    margin-top: -40px; /* Adjust based on chart */
+}
+
+.highlight-box {
+    background-color: rgba(195, 212, 0, 0.8); /* Light green */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 30px;
+    left: 150px;
+    font-weight: bold;
+}
+
+.highlight-box h4 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.highlight-box p {
+    margin: 0;
+}

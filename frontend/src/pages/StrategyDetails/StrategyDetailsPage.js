@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card, Row, Col, Button, ProgressBar, Table } from 'react-bootstrap';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'; // For charting
 import './StrategyDetails.css';
 import StrategyHeader from "./components/StrategyHeader";
+import StrategyChart from "./components/StrategyChart";
 
 // Sample mock data
 const mockResults = [
@@ -102,14 +102,6 @@ const StrategyDetails = () => {
         return <div>Strategy not found!</div>;
     }
 
-    // Chart mock data for demonstration
-    const performanceData = [
-        { date: '2023-01', value: 100 },
-        { date: '2023-02', value: 120 },
-        { date: '2023-03', value: 130 },
-        { date: '2023-04', value: 125 },
-        // Add more data points
-    ];
 
     return (
         <Container className="mt-5">
@@ -177,15 +169,7 @@ const StrategyDetails = () => {
                     <Card className="mb-4">
                         <Card.Body>
                             <h4>Performance Chart</h4>
-                            <ResponsiveContainer width="100%" height={300}>
-                                <LineChart data={performanceData}>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="date" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                                </LineChart>
-                            </ResponsiveContainer>
+                            <StrategyChart/>
                         </Card.Body>
                     </Card>
                 </Col>
