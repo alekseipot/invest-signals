@@ -116,108 +116,144 @@ const StrategyDetails = () => {
             {/* 1. Header */}
             <StrategyHeader strategy={strategy}/>
 
-            {/* 2. Rating */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Rating</h4>
-                    {/* Placeholder rating, you can replace with actual stars */}
-                    <p>⭐⭐⭐⭐⭐</p>
-                </Card.Body>
-            </Card>
+            <Row className="align-items-center mb-4">
+                <Col lg={6} xs={12}>
+                    {/* 2. Rating */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <Table>
+                                <tbody>
+                                <tr>
+                                    <td>chance</td>
+                                    <td className="text-end">⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>risk</td>
+                                    <td className="text-end">⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>comfort</td>
+                                    <td className="text-end">⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col lg={6} xs={12}>
+                    {/* 3. Basic Data */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <h4>Basic Data</h4>
+                            <Table>
+                                <tbody>
+                                <tr>
+                                    <td>Start Date</td>
+                                    <td>12/1999</td>
+                                </tr>
+                                <tr>
+                                    <td>End Date</td>
+                                    <td>09/2024</td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
 
-            {/* 3. Basic Data */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Basic Data</h4>
-                    <Table>
-                        <tbody>
-                        <tr>
-                            <td>Start Date</td>
-                            <td>12/1999</td>
-                        </tr>
-                        <tr>
-                            <td>End Date</td>
-                            <td>09/2024</td>
-                        </tr>
-                        </tbody>
-                    </Table>
-                </Card.Body>
-            </Card>
+            <Row className="align-items-center mb-4">
+                <Col lg={6} xs={12}>
+                    {/* 6. Description */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <h4>Description</h4>
+                            <p>{strategy.details}</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col lg={6} xs={12}>
+                    {/* 4. Chart */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <h4>Performance Chart</h4>
+                            <ResponsiveContainer width="100%" height={300}>
+                                <LineChart data={performanceData}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="date" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
 
-            {/* 4. Chart */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Performance Chart</h4>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <LineChart data={performanceData}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis />
-                            <Tooltip />
-                            <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                        </LineChart>
-                    </ResponsiveContainer>
-                </Card.Body>
-            </Card>
+            <Row className="align-items-center mb-4">
+                <Col lg={6} xs={12}>
+                    {/* 5. Capital Section */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <h4>Capital</h4>
+                            <Row>
+                                <Col>
+                                    <p><strong>Start 12/1999</strong></p>
+                                    <p>Benchmark: {strategy.capital.start}</p>
+                                </Col>
+                                <Col>
+                                    <p><strong>End of 09/2024</strong></p>
+                                    <p>Benchmark: {strategy.capital.benchmark}</p>
+                                    <p>Strategy: {strategy.capital.end}</p>
+                                </Col>
+                            </Row>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col lg={6} xs={12}>
+                    {/* 7. Return */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <h4>Return</h4>
+                            <ProgressBar now={parseInt(strategy.return)} label={`${strategy.return}`} />
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
 
-            {/* 5. Capital Section */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Capital</h4>
-                    <Row>
-                        <Col>
-                            <p><strong>Start 12/1999</strong></p>
-                            <p>Benchmark: {strategy.capital.start}</p>
-                        </Col>
-                        <Col>
-                            <p><strong>End of 09/2024</strong></p>
-                            <p>Benchmark: {strategy.capital.benchmark}</p>
-                            <p>Strategy: {strategy.capital.end}</p>
-                        </Col>
-                    </Row>
-                </Card.Body>
-            </Card>
-
-            {/* 6. Description */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Description</h4>
-                    <p>{strategy.details}</p>
-                </Card.Body>
-            </Card>
-
-            {/* 7. Return */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Return</h4>
-                    <ProgressBar now={parseInt(strategy.return)} label={`${strategy.return}`} />
-                </Card.Body>
-            </Card>
-
-            {/* 8. Risk */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Risk</h4>
-                    <p>{strategy.risk}</p>
-                </Card.Body>
-            </Card>
-
-            {/* 9. Return to Risk */}
-            <Card className="mb-4">
-                <Card.Body>
-                    <h4>Return to Risk</h4>
-                    <p>{strategy.returnToRisk}</p>
-                </Card.Body>
-            </Card>
-
-            {/* 10. Subscribe Section */}
-            <Card className="mb-4">
-                <Card.Body className="text-center">
-                    <h4>Subscribe Now</h4>
-                    <p>Price: {strategy.price}</p>
-                    <Button variant="primary">Subscribe</Button>
-                </Card.Body>
-            </Card>
+            <Row className="align-items-center mb-4">
+                <Col lg={6} xs={12}>
+                    {/* 8. Risk */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <h4>Risk</h4>
+                            <p>{strategy.risk}</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col lg={6} xs={12}>
+                    {/* 9. Return to Risk */}
+                    <Card className="mb-4">
+                        <Card.Body>
+                            <h4>Return to Risk</h4>
+                            <p>{strategy.returnToRisk}</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+            <Row className="align-items-center mb-4">
+                <Col>
+                    {/* 10. Subscribe Section */}
+                    <Card className="mb-4">
+                        <Card.Body className="text-center">
+                            <h4>Subscribe Now</h4>
+                            <p>Price: {strategy.price}</p>
+                            <Button variant="primary">Subscribe</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
         </Container>
     );
 };
