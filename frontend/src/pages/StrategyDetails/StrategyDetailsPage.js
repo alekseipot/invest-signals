@@ -113,6 +113,7 @@ const StrategyDetails = () => {
                     {/* 2. Rating */}
                     <Card className="mb-4">
                         <Card.Body>
+                            <h4>Strategy rating</h4>
                             <Table>
                                 <tbody>
                                 <tr>
