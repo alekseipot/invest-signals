@@ -5,6 +5,8 @@ target/
 
 **/node_modules/
 frontend/.pnp
+frontend/build
+frontend/node
 
 # Log file
 *.log

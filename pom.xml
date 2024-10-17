@@ -8,7 +8,7 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <spring-boot.version>3.2.0</spring-boot.version>
+        <spring-boot.version>3.3.4</spring-boot.version>
         <java.version>18</java.version>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
@@ -16,7 +16,6 @@
         <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
         <node.version>v22.3.0</node.version>
         <yarn.version>v1.22.19</yarn.version>
-        <javafaker.version>1.0.2</javafaker.version>
     </properties>
 
     <dependencies>
@@ -43,134 +42,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>${javafaker.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>default-jdk9-and-above</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>install node</id>
-                                <goals>
-                                    <goal>install-node-and-yarn</goal>
-                                </goals>
-                                <configuration>
-                                    <skip>true</skip>
-                                    <nodeVersion>${node.version}</nodeVersion>
-                                    <yarnVersion>${yarn.version}</yarnVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>yarn install</id>
-                                <goals>
-                                    <goal>yarn</goal>
-                                </goals>
-                                <phase>none</phase>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>yarn test</id>
-                                <goals>
-                                    <goal>yarn</goal>
-                                </goals>
-                                <phase>none</phase>
-                                <configuration>
-                                    <arguments>test</arguments>
-                                    <environmentVariables>
-                                        <CI>true</CI>
-                                    </environmentVariables>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>yarn build</id>
-                                <goals>
-                                    <goal>yarn</goal>
-                                </goals>
-                                <phase>compile</phase>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>integration-jdk9-and-above</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>install node</id>
-                                <goals>
-                                    <goal>install-node-and-yarn</goal>
-                                </goals>
-                                <configuration>
-                                    <skip>true</skip>
-                                    <nodeVersion>${node.version}</nodeVersion>
-                                    <yarnVersion>${yarn.version}</yarnVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>yarn install</id>
-                                <goals>
-                                    <goal>yarn</goal>
-                                </goals>
-                                <phase>none</phase>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>yarn test</id>
-                                <goals>
-                                    <goal>yarn</goal>
-                                </goals>
-                                <phase>none</phase>
-                                <configuration>
-                                    <arguments>test</arguments>
-                                    <environmentVariables>
-                                        <CI>true</CI>
-                                    </environmentVariables>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>yarn build</id>
-                                <goals>
-                                    <goal>yarn</goal>
-                                </goals>
-                                <phase>compile</phase>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>
@@ -248,6 +125,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
