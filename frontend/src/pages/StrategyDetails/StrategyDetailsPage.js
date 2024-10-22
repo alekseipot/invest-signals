@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Container, Card, Row, Col, Button, ProgressBar, Table } from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {Container, Card, Row, Col, Button, ProgressBar, Table} from 'react-bootstrap';
 import './StrategyDetails.css';
 import StrategyHeader from './components/StrategyHeader';
 import StrategyChart from './components/StrategyChart';
+import Ratings from "./components/Ratings";
 
 const StrategyDetails = () => {
-    const { id } = useParams(); // Get the ID from the URL
+    const {id} = useParams(); // Get the ID from the URL
     const [strategy, setStrategy] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -41,7 +42,7 @@ const StrategyDetails = () => {
     return (
         <Container className="mt-5">
             {/* 1. Header */}
-            <StrategyHeader strategy={strategy} />
+            <StrategyHeader strategy={strategy}/>
 
             {/* New Row with Description, Strategy Rating, and Performance Chart */}
             <Row className="align-items-start mb-4">
@@ -50,32 +51,11 @@ const StrategyDetails = () => {
                     <Card className="mb-4">
                         <Card.Body>
                             <h4>Description</h4>
-                            <p>{strategy.details}</p>
+                            <p>{strategy.description}</p>
                         </Card.Body>
                     </Card>
+                    <Ratings ratings={strategy.ratings}/>
 
-                    {/* 3. Strategy Rating */}
-                    <Card className="mb-4">
-                        <Card.Body>
-                            <h4>Strategy rating</h4>
-                            <Table>
-                                <tbody>
-                                <tr>
-                                    <td>Chance</td>
-                                    <td className="text-end">⭐⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>Risk</td>
-                                    <td className="text-end">⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>Comfort</td>
-                                    <td className="text-end">⭐⭐⭐⭐⭐</td>
-                                </tr>
-                                </tbody>
-                            </Table>
-                        </Card.Body>
-                    </Card>
                 </Col>
 
                 <Col lg={6} xs={12}>
@@ -83,7 +63,7 @@ const StrategyDetails = () => {
                     <Card className="mb-4">
                         <Card.Body>
                             <h4>Performance Chart</h4>
-                            <StrategyChart />
+                            <StrategyChart/>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -138,7 +118,7 @@ const StrategyDetails = () => {
                     <Card className="mb-4">
                         <Card.Body>
                             <h4>Return</h4>
-                            <ProgressBar now={parseInt(strategy.return)} label={`${strategy.return}`} />
+                            <ProgressBar now={parseInt(strategy.return)} label={`${strategy.return}`}/>
                         </Card.Body>
                     </Card>
                 </Col>

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,8 +13,7 @@ public class StrategyDetailsDto {
     private int id;
     private String name;
     private String description;
-    private String image;
-    private String details;
+    private List<RatingDto> ratings;
     private CapitalDto capital;
     private String returnRate;
     private String risk;
