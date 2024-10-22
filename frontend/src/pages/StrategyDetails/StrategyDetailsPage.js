@@ -1,102 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card, Row, Col, Button, ProgressBar, Table } from 'react-bootstrap';
 import './StrategyDetails.css';
 import StrategyHeader from "./components/StrategyHeader";
 import StrategyChart from "./components/StrategyChart";
 
-// Sample mock data
-const mockResults = [
-        {
-            "id": 1,
-            "name": "Stock Market Strategy 1",
-            "description": "Best strategy for high-return stock investments.",
-            "image": "/images/stock_market_strategies.jpg",
-            "details": "This strategy focuses on blue-chip stocks with strong growth potential. It targets well-established companies and aims for long-term capital appreciation.",
-            "capital": {
-                "start": "100,000 €",
-                "end": "2,528,150 €",
-                "benchmark": "370,490 €"
-            },
-            "return": "15%",
-            "risk": "Moderate",
-            "returnToRisk": "High",
-            "price": "€49.99/month",
-            "performance": "+13.93% p.a."
-        },
-        {
-            "id": 2,
-            "name": "Real Estate Strategy 1",
-            "description": "Maximize long-term returns with real estate investments.",
-            "image": "/images/real_estate_strategies.jpg",
-            "details": "This strategy focuses on purchasing undervalued real estate in growing areas. It’s perfect for long-term investors looking for stable and secure returns through property investment.",
-            "capital": {
-                "start": "150,000 €",
-                "end": "3,150,000 €",
-                "benchmark": "500,000 €"
-            },
-            "return": "10%",
-            "risk": "Low",
-            "returnToRisk": "Medium",
-            "price": "€79.99/month",
-            "performance": "+9.85% p.a."
-        },
-        {
-            "id": 3,
-            "name": "Cryptocurrency Strategy 1",
-            "description": "Gain insights into the volatile crypto market with this strategy.",
-            "image": "/images/cryptocurrency_strategies.jpg",
-            "details": "Focused on top cryptocurrencies like Bitcoin and Ethereum, this strategy seeks to take advantage of the market’s volatility to achieve significant returns in a short timeframe.",
-            "capital": {
-                "start": "50,000 €",
-                "end": "1,500,000 €",
-                "benchmark": "300,000 €"
-            },
-            "return": "25%",
-            "risk": "High",
-            "returnToRisk": "High",
-            "price": "€99.99/month",
-            "performance": "+18.22% p.a."
-        },
-        {
-            "id": 4,
-            "name": "Bond Market Strategy 1",
-            "description": "Secure your portfolio with reliable government and corporate bonds.",
-            "image": "/images/bond_market_strategies.jpg",
-            "details": "This strategy focuses on safe, government-issued bonds and investment-grade corporate bonds, offering stable returns with minimal risk.",
-            "capital": {
-                "start": "200,000 €",
-                "end": "1,000,000 €",
-                "benchmark": "850,000 €"
-            },
-            "return": "6%",
-            "risk": "Low",
-            "returnToRisk": "Medium",
-            "price": "€39.99/month",
-            "performance": "+5.10% p.a."
-        },
-        {
-            "id": 5,
-            "name": "Commodity Strategy 1",
-            "description": "Invest in precious metals and energy resources.",
-            "image": "/images/commodity_strategies.jpg",
-            "details": "This strategy focuses on commodities like gold, silver, and oil. It’s designed to protect against inflation and provide stable returns during economic downturns.",
-            "capital": {
-                "start": "120,000 €",
-                "end": "980,000 €",
-                "benchmark": "450,000 €"
-            },
-            "return": "12%",
-            "risk": "Moderate",
-            "returnToRisk": "High",
-            "price": "€69.99/month",
-            "performance": "+11.30% p.a."
-        }
-    ];
-
 const StrategyDetails = () => {
     const { id } = useParams(); // Get the ID from the URL
-    const strategy = mockResults.find((item) => item.id === parseInt(id)); // Find the strategy by ID
+    const [strategy, setStrategy] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Fetch strategy details from the backend
+        const fetchStrategy = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/strategies/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setStrategy(data);
+            } catch (error) {
+                console.error('Error fetching strategy:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchStrategy();
+    }, [id]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     if (!strategy) {
         return <div>Strategy not found!</div>;
