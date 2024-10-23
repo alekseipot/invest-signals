@@ -5,6 +5,7 @@ import './StrategyDetails.css';
 import StrategyHeader from './components/StrategyHeader';
 import StrategyChart from './components/StrategyChart';
 import Ratings from "./components/Ratings";
+import StrategyCharacteristics from "./components/StrategyCharacteristics";
 
 const StrategyDetails = () => {
     const {id} = useParams(); // Get the ID from the URL
@@ -69,81 +70,7 @@ const StrategyDetails = () => {
                 </Col>
             </Row>
 
-            {/* Other Sections */}
-            <Row className="align-items-center mb-4">
-                <Col lg={6} xs={12}>
-                    {/* 5. Basic Data */}
-                    <Card className="mb-4">
-                        <Card.Body>
-                            <h4>Basic Data</h4>
-                            <Table>
-                                <tbody>
-                                <tr>
-                                    <td>Start Date</td>
-                                    <td>12/1999</td>
-                                </tr>
-                                <tr>
-                                    <td>End Date</td>
-                                    <td>09/2024</td>
-                                </tr>
-                                </tbody>
-                            </Table>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col lg={6} xs={12}>
-                    {/* 6. Capital Section */}
-                    <Card className="mb-4">
-                        <Card.Body>
-                            <h4>Capital</h4>
-                            <Row>
-                                <Col>
-                                    <p><strong>Start 12/1999</strong></p>
-                                    <p>Benchmark: {strategy.capital.start}</p>
-                                </Col>
-                                <Col>
-                                    <p><strong>End of 09/2024</strong></p>
-                                    <p>Benchmark: {strategy.capital.benchmark}</p>
-                                    <p>Strategy: {strategy.capital.end}</p>
-                                </Col>
-                            </Row>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-
-            <Row className="align-items-center mb-4">
-                <Col lg={6} xs={12}>
-                    {/* 7. Return */}
-                    <Card className="mb-4">
-                        <Card.Body>
-                            <h4>Return</h4>
-                            <ProgressBar now={parseInt(strategy.return)} label={`${strategy.return}`}/>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col lg={6} xs={12}>
-                    {/* 8. Risk */}
-                    <Card className="mb-4">
-                        <Card.Body>
-                            <h4>Risk</h4>
-                            <p>{strategy.risk}</p>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-
-            <Row className="align-items-center mb-4">
-                <Col lg={6} xs={12}>
-                    {/* 9. Return to Risk */}
-                    <Card className="mb-4">
-                        <Card.Body>
-                            <h4>Return to Risk</h4>
-                            <p>{strategy.returnToRisk}</p>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
+            <StrategyCharacteristics characteristics={strategy.characteristics} />
 
             <Row className="align-items-center mb-4">
                 <Col>

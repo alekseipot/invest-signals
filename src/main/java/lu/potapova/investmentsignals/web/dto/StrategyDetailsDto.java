@@ -14,6 +14,7 @@ public class StrategyDetailsDto {
     private String name;
     private String description;
     private List<RatingDto> ratings;
+    private List<CharacteristicDto> characteristics;
     private CapitalDto capital;
     private String returnRate;
     private String risk;
