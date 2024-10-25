@@ -9,17 +9,16 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StrategyDetailsDto {
+public class StrategyDto {
     private int id;
     private String name;
     private String description;
-    private List<RatingDto> ratings;
-    private List<CharacteristicDto> characteristics;
-    private CapitalDto capital;
     private String returnRate;
     private String risk;
     private String returnToRisk;
     private String price;
     private String performance;
+    private List<RatingDto> ratings;
+    private List<CharacteristicDto> characteristics;
 
 }

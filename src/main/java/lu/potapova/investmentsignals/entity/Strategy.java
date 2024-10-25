@@ -1,19 +1,30 @@
 package lu.potapova.investmentsignals.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
-@Table(name = "strategy")
 public class Strategy {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+    private String description;
+    private String returnRate;
+    private String risk;
+    private String returnToRisk;
+    private String price;
+    private String performance;
+
+    @OneToMany(mappedBy = "strategy", cascade = CascadeType.ALL)
+    private List<Rating> ratings;
+
+    @OneToMany(mappedBy = "strategy", cascade = CascadeType.ALL)
+    private List<Characteristic> characteristics;
+
 }

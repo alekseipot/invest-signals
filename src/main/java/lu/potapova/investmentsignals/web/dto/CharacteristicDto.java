@@ -11,6 +11,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class CharacteristicDto {
 
+    private Long id;
     private String title;
     private Map<String, String> properties;
 }

@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RatingDto {
+    private Long id;
     private String label;
     private BigDecimal rating;
 }

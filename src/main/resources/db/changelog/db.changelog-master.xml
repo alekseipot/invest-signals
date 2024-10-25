@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- ChangeSet for creating Strategy table -->
+    <changeSet id="1" author="potapov">
+        <createTable tableName="strategy">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="return_rate" type="VARCHAR(255)"/>
+            <column name="risk" type="VARCHAR(255)"/>
+            <column name="return_to_risk" type="VARCHAR(255)"/>
+            <column name="price" type="VARCHAR(255)"/>
+            <column name="performance" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet for creating Characteristic table -->
+    <changeSet id="3" author="potapov">
+        <createTable tableName="characteristic">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="strategy_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet for creating Characteristic Properties table -->
+    <changeSet id="4" author="potapov">
+        <createTable tableName="characteristic_properties">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="characteristic_id" type="BIGINT"/>
+            <column name="property_name" type="VARCHAR(255)"/>
+            <column name="property_value" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet for creating Rating table -->
+    <changeSet id="5" author="potapov">
+        <createTable tableName="rating">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="label" type="VARCHAR(255)"/>
+            <column name="rating" type="DECIMAL(10, 2)"/>
+            <column name="strategy_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Add foreign key constraints -->
+    <changeSet id="6" author="potapov">
+        <addForeignKeyConstraint baseTableName="characteristic" baseColumnNames="strategy_id"
+                                 referencedTableName="strategy" referencedColumnNames="id"
+                                 constraintName="fk_characteristic_strategy"/>
+
+        <addForeignKeyConstraint baseTableName="characteristic_properties" baseColumnNames="characteristic_id"
+                                 referencedTableName="characteristic" referencedColumnNames="id"
+                                 constraintName="fk_characteristic_properties_characteristic"/>
+
+        <addForeignKeyConstraint baseTableName="rating" baseColumnNames="strategy_id"
+                                 referencedTableName="strategy" referencedColumnNames="id"
+                                 constraintName="fk_rating_strategy"/>
+    </changeSet>
+
+    <!-- Load data from external SQL file -->
+    <changeSet id="7" author="potapov">
+        <sqlFile path="liquibase/data/insert-mock-data.sql"/>
+    </changeSet>
+
+</databaseChangeLog>
