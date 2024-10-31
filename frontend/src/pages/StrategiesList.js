@@ -11,7 +11,7 @@ const StrategyList = () => {
     useEffect(() => {
         setLoading(true);
 
-        fetch('api/strategies')
+        fetch('api/public/strategies')
             .then(response => response.json())
             .then(data => {
                 setStrategies(data);

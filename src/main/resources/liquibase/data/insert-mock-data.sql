@@ -67,3 +67,6 @@ INSERT INTO rating (id, label, rating, strategy_id) VALUES
 INSERT INTO rating (id, label, rating, strategy_id) VALUES
                                                           (4, 'Risk', 2.2, 2),
                                                           (5, 'Comfort', 4.6, 2);
+
+INSERT INTO users (email, password, creation_date) VALUES
+    ('user@example.com', '$2a$10$wzjL/Nz9OH9dZP9/Zt1Ou.hYb3I6nScf1AFOxPqVw8/e/eX6djz6e', CURRENT_TIMESTAMP);

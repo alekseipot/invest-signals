@@ -78,8 +78,26 @@
                                  constraintName="fk_rating_strategy"/>
     </changeSet>
 
-    <!-- Load data from external SQL file -->
+    <!-- ChangeSet for creating User table -->
     <changeSet id="7" author="potapov">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Load data from external SQL file -->
+    <changeSet id="8" author="potapov">
         <sqlFile path="liquibase/data/insert-mock-data.sql"/>
     </changeSet>
 
