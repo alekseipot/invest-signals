@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Card, Table} from 'react-bootstrap';
+import { Card, Table} from 'react-bootstrap';
 import StarsReview from "./StarsReview";
 
 const Ratings = ({ratings}) => {

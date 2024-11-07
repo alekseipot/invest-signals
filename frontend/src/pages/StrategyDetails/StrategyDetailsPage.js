@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {Container, Card, Row, Col, Button, ProgressBar, Table} from 'react-bootstrap';
+import {Container, Card, Row, Col, Button } from 'react-bootstrap';
 import './StrategyDetails.css';
 import StrategyHeader from './components/StrategyHeader';
 import StrategyChart from './components/StrategyChart';

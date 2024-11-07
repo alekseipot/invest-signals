@@ -1,4 +1,3 @@
-import Ratings from "./Ratings";
 
 const StarsReview = ({rating, size}) => {
     
