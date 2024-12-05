@@ -1,18 +1,37 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form, Card, Container, Row, Col } from 'react-bootstrap';
+import {Alert} from "reactstrap";
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        // Add authentication logic here
-        console.log("Logging in with:", email, password);
-        // If login is successful, redirect to another page
-        // navigate("/dashboard"); // Example redirection
+        setError(null); // Clear any previous errors
+
+        try {
+            const response = await fetch('http://localhost:8080/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Invalid login credentials');
+            }
+
+            const data = await response.json();
+            localStorage.setItem('jwtToken', data.token); // Store JWT token in localStorage
+            navigate('/dashboard'); // Redirect to dashboard
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
     return (
@@ -22,6 +41,7 @@ const LoginPage = () => {
                     <Card className="p-4 shadow">
                         <Card.Body>
                             <h2 className="text-center mb-4">Login</h2>
+                            {error && <Alert variant="error">{error}</Alert>}
                             <Form onSubmit={handleLogin}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
