@@ -7,30 +7,22 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(null); // Clear any previous errors
+        // Assume response contains the token from the backend
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
 
-        try {
-            const response = await fetch('http://localhost:8080/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Invalid login credentials');
-            }
-
+        if (response.ok) {
             const data = await response.json();
-            localStorage.setItem('jwtToken', data.token); // Store JWT token in localStorage
-            navigate('/dashboard'); // Redirect to dashboard
-        } catch (err) {
-            setError(err.message);
+            localStorage.setItem('token', data.token); // Store token in localStorage
+            window.location.href = '/dashboard'; // Redirect to the dashboard
+        } else {
+            console.error('Login failed');
         }
     };
 
